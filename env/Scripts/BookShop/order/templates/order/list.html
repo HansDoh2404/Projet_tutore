@@ -1,0 +1,35 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block container %}
+			<div class="cart_info">
+			    <table class="table table-hover">
+			        <thead class="text-center">
+			            <tr>
+			                <th scope="col">Titre</th>
+			                <th scope="col">Date d'emprunt</th>
+			                <th scope="col">Date de retour</th>
+							<th scope="col">Statut</th>
+			            </tr>
+			        </thead>
+			        <tbody class="text-center">
+			            {% for morder in myorder %}
+			            <tr>
+			                <td>{{ morder.book_id.name }}</td>
+							{% if morder.created == None %}
+			                	<td>-------------</td>
+							{% else %}
+								<td>{{ morder.created }}</td>
+							{% endif %}
+							{% if morder.updated == None %}
+			                	<td>-------------</td>
+							{% else %}
+								<td>{{ morder.updated }}</td>
+							{% endif %}
+			                <td>{{ morder.status }}</td>
+			            </tr>
+			        	{% endfor %}
+			        </tbody>
+			    </table>
+			</div>
+
+		{% endblock %}
